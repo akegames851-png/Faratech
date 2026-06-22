@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 import { type Lang, T, t } from "@/lib/i18n";
-import capitanAsset from "@/assets/capitan_6.png.asset.json";
+
+const HERO_IMAGE = "/wheelchair-hero.png";
 
 const certifications = ["ISO 13485", "CE Mark", "FDA Cleared", "TÜV Rheinland", "EN 12183", "EN 12184", "ISO 9001", "MDR 2017/745"];
 
