@@ -102,13 +102,11 @@ export function Navigation({ lang }: { lang: Lang }) {
         <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link to={`/${lang}`} className="flex items-center gap-3 flex-shrink-0" aria-label="FARATECH home">
             <img
-              src={LOGO_URL}
+              src={LOGO_SRC}
               alt="FARATECH"
-              className="h-9 md:h-12 w-auto"
-              width={48}
-              height={48}
+              className="h-9 md:h-12 w-auto object-contain"
               decoding="async"
-            />
+            />>
             <span className="hidden sm:flex flex-col leading-none">
               <span className="font-heading font-bold text-[var(--brand-navy)] text-lg tracking-widest uppercase">FARATECH</span>
               <span className="text-[9px] text-muted-foreground tracking-[0.2em] uppercase">Mobility Systems</span>
