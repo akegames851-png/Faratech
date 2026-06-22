@@ -12,13 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
-import faviconIco from "@/assets/favicon.ico.asset.json";
-import favicon16 from "@/assets/favicon-16x16.png.asset.json";
-import favicon32 from "@/assets/favicon-32x32.png.asset.json";
-import appleTouchIcon from "@/assets/apple-touch-icon.png.asset.json";
-import androidChrome192 from "@/assets/android-chrome-192x192.png.asset.json";
-import androidChrome512 from "@/assets/android-chrome-512x512.png.asset.json";
-import ogImage from "@/assets/og-image.png.asset.json";
+// All site imagery is served from clean public paths.
+const LOGO = "/logo.png";
 
 function NotFoundComponent() {
   return (
