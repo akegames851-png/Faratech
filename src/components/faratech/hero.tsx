@@ -80,10 +80,8 @@ export function Hero({ lang }: { lang: Lang }) {
             <div className="absolute inset-0 bg-[var(--brand-red)]/8 rounded-full blur-3xl scale-75" />
             <div className="relative w-full max-w-lg aspect-square">
               <img
-                src={capitanAsset.url}
-                alt="FARATECH Capitan wheelchair"
-                width={1024}
-                height={1024}
+                src={HERO_IMAGE}
+                alt="FARATECH Capitan power wheelchair"
                 decoding="async"
                 fetchPriority="high"
                 className="w-full h-full object-contain rounded-2xl"
