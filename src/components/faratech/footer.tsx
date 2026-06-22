@@ -37,11 +37,9 @@ export function Footer({ lang }: { lang: Lang }) {
           <div className="col-span-2">
             <Link to={`/${lang}`} className="inline-flex items-center gap-3 mb-6" aria-label="FARATECH home">
               <img
-                src={LOGO_URL}
+                src={LOGO_SRC}
                 alt="FARATECH"
-                className="h-14 w-auto"
-                width={56}
-                height={56}
+                className="h-14 w-auto object-contain"
                 decoding="async"
               />
               <div className="flex flex-col leading-none">
