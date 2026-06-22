@@ -106,7 +106,7 @@ export function Navigation({ lang }: { lang: Lang }) {
               alt="FARATECH"
               className="h-9 md:h-12 w-auto object-contain"
               decoding="async"
-            />>
+            />
             <span className="hidden sm:flex flex-col leading-none">
               <span className="font-heading font-bold text-[var(--brand-navy)] text-lg tracking-widest uppercase">FARATECH</span>
               <span className="text-[9px] text-muted-foreground tracking-[0.2em] uppercase">Mobility Systems</span>
