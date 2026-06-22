@@ -3,10 +3,9 @@ import { Link, useNavigate, useLocation } from "@tanstack/react-router";
 import { Menu, X, ChevronDown, Globe, Phone } from "lucide-react";
 import { type Lang, LANGS, LANG_LABELS, T, t } from "@/lib/i18n";
 import { CATEGORIES } from "@/lib/products";
-import logoAsset from "@/assets/faratech-logo.svg.asset.json";
 
 const PHONE = "021-7751 6927-28";
-const LOGO_URL = logoAsset.url;
+const LOGO_SRC = "/logo.png";
 
 // Per-language font stacks for the language-switcher labels so each native
 // label renders in its own script's font, independent of the active UI lang.
