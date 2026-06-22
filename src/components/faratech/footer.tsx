@@ -2,10 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ExternalLink, Play, Share2 } from "lucide-react";
 import { type Lang, T, t } from "@/lib/i18n";
 import { CATEGORIES } from "@/lib/products";
-import logoAsset from "@/assets/faratech-logo.svg.asset.json";
 
 const PHONE = "021-7751 6927-28";
-const LOGO_URL = logoAsset.url;
+const LOGO_SRC = "/logo.png";
 const certBadges = ["ISO 13485", "CE", "FDA", "TÜV", "EN 12183", "EN 12184"];
 
 export function Footer({ lang }: { lang: Lang }) {
