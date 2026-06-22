@@ -9,38 +9,122 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangIndexRouteImport } from './routes/$lang.index'
+import { Route as LangSparePartsRouteImport } from './routes/$lang.spare-parts'
+import { Route as LangProductsIndexRouteImport } from './routes/$lang.products.index'
+import { Route as LangProductsCategoryIndexRouteImport } from './routes/$lang.products.$category.index'
+import { Route as LangProductsCategoryProductRouteImport } from './routes/$lang.products.$category.$product'
 
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangSparePartsRoute = LangSparePartsRouteImport.update({
+  id: '/spare-parts',
+  path: '/spare-parts',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangProductsIndexRoute = LangProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangProductsCategoryIndexRoute =
+  LangProductsCategoryIndexRouteImport.update({
+    id: '/products/$category/',
+    path: '/products/$category/',
+    getParentRoute: () => LangRoute,
+  } as any)
+const LangProductsCategoryProductRoute =
+  LangProductsCategoryProductRouteImport.update({
+    id: '/products/$category/$product',
+    path: '/products/$category/$product',
+    getParentRoute: () => LangRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/spare-parts': typeof LangSparePartsRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/products/': typeof LangProductsIndexRoute
+  '/$lang/products/$category/$product': typeof LangProductsCategoryProductRoute
+  '/$lang/products/$category/': typeof LangProductsCategoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$lang/spare-parts': typeof LangSparePartsRoute
+  '/$lang': typeof LangIndexRoute
+  '/$lang/products': typeof LangProductsIndexRoute
+  '/$lang/products/$category/$product': typeof LangProductsCategoryProductRoute
+  '/$lang/products/$category': typeof LangProductsCategoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/$lang/spare-parts': typeof LangSparePartsRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/products/': typeof LangProductsIndexRoute
+  '/$lang/products/$category/$product': typeof LangProductsCategoryProductRoute
+  '/$lang/products/$category/': typeof LangProductsCategoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/$lang'
+    | '/$lang/spare-parts'
+    | '/$lang/'
+    | '/$lang/products/'
+    | '/$lang/products/$category/$product'
+    | '/$lang/products/$category/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/$lang/spare-parts'
+    | '/$lang'
+    | '/$lang/products'
+    | '/$lang/products/$category/$product'
+    | '/$lang/products/$category'
+  id:
+    | '__root__'
+    | '/'
+    | '/$lang'
+    | '/$lang/spare-parts'
+    | '/$lang/'
+    | '/$lang/products/'
+    | '/$lang/products/$category/$product'
+    | '/$lang/products/$category/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +132,66 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/spare-parts': {
+      id: '/$lang/spare-parts'
+      path: '/spare-parts'
+      fullPath: '/$lang/spare-parts'
+      preLoaderRoute: typeof LangSparePartsRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/products/': {
+      id: '/$lang/products/'
+      path: '/products'
+      fullPath: '/$lang/products/'
+      preLoaderRoute: typeof LangProductsIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/products/$category/': {
+      id: '/$lang/products/$category/'
+      path: '/products/$category'
+      fullPath: '/$lang/products/$category/'
+      preLoaderRoute: typeof LangProductsCategoryIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/products/$category/$product': {
+      id: '/$lang/products/$category/$product'
+      path: '/products/$category/$product'
+      fullPath: '/$lang/products/$category/$product'
+      preLoaderRoute: typeof LangProductsCategoryProductRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
+interface LangRouteChildren {
+  LangSparePartsRoute: typeof LangSparePartsRoute
+  LangIndexRoute: typeof LangIndexRoute
+  LangProductsIndexRoute: typeof LangProductsIndexRoute
+  LangProductsCategoryProductRoute: typeof LangProductsCategoryProductRoute
+  LangProductsCategoryIndexRoute: typeof LangProductsCategoryIndexRoute
+}
+
+const LangRouteChildren: LangRouteChildren = {
+  LangSparePartsRoute: LangSparePartsRoute,
+  LangIndexRoute: LangIndexRoute,
+  LangProductsIndexRoute: LangProductsIndexRoute,
+  LangProductsCategoryProductRoute: LangProductsCategoryProductRoute,
+  LangProductsCategoryIndexRoute: LangProductsCategoryIndexRoute,
+}
+
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangRoute: LangRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
